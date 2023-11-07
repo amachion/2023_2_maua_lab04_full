@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
+const bcrypt = require("bcrypt");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -46,9 +47,11 @@ app.post('/filmes', async (req, res) => {
 app.post('/signup', async (req, res) => {
     const login = req.body.login;
     const password = req.body.password;
+    const criptografada = await bcrypt.hash(password, 2)
+
     const usuario = new Usuario ({
         login: login,
-        password: password
+        password: criptografada
     })
     const respostaMongo = await usuario.save();
     console.log(respostaMongo);
