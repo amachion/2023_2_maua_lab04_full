@@ -1,8 +1,9 @@
 const protocolo = 'http://';
 const host = 'localhost:3000';
-const endPoint = '/filmes';
+
 
 async function obterFilmes () {
+    const endPoint = '/filmes';
     const urlCompleta = `${protocolo}${host}${endPoint}`;
     const filmes = (await axios.get(urlCompleta)).data;
     //console.log(filmes)
@@ -17,6 +18,7 @@ async function obterFilmes () {
     }
 }
 async function cadastrarFilme() {
+    const endPoint = '/filmes';
     const urlCompleta = `${protocolo}${host}${endPoint}`;
     let tituloInput = document.querySelector('#tituloInput');
     let sinopseInput = document.querySelector('#sinopseInput');
@@ -45,6 +47,25 @@ async function cadastrarFilme() {
         setTimeout (() => {
             alert.classList.add('d-none')
             alert.classList.remove('show')
+        }, 2000)
+    }
+}
+async function cadastrarUsuario(){
+    let usuarioCadastroInput = document.querySelector('#usuarioCadastroInput')
+    let passwordCadastroInput = document.querySelector('#passwordCadastroInput')
+    let usuarioCadastro = usuarioCadastroInput.value
+    let passwordCadastro = passwordCadastroInput.value
+    if (usuarioCadastro && passwordCadastro) {
+    
+    }
+    else{
+        let alert = document.querySelector('.alert-modal-cadastro')
+        alert.innerHTML = "Preencha todos os campos"
+        alert.classList.add('show', 'alert-danger')
+        alert.classList.remove('d-none')
+        setTimeout(() => {
+            alert.classList.remove('show')
+            alert.classList.add('d-none')
         }, 2000)
     }
 }
